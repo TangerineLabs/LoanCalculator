@@ -42,11 +42,11 @@ public class LoanCalc {
 
     private static void calculate() {
         //calculate and display new balance for each period
-        String update;
         for (periodNumber = 1; periodNumber <= numPeriods; periodNumber++ ){
-            
+            double interest = principal * rate;
             principal = (principal * rate) + principal;
-            update = "The principal after period " + periodNumber + " is " + principal; 
+            String update = "For period " + periodNumber + " interest earned = " +
+                    interest + ". The new principal = "+ principal; 
             System.out.println(update);
         }
     }
