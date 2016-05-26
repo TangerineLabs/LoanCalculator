@@ -6,6 +6,7 @@
 package loancalculator;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,11 +15,11 @@ import javax.swing.JOptionPane;
  */
 public class LoanCalc {
     
-    private static BigDecimal principal;
-    private static BigDecimal remainingPrincipal;
+    private static double principal;
+    private static double remainingPrincipal;
     private static double rate;
     private static int numPeriods;
-    private static int periodNumber;
+    private static int periodNumber = 0;
 
     /**
      * @param args the command line arguments
@@ -31,8 +32,7 @@ public class LoanCalc {
     private static void promptUser() {
         //get input from user
         // Get the starting amount
-        String strPrincipal = JOptionPane.showInputDialog("Enter the starting amount");
-        principal = new BigDecimal(strPrincipal);
+        principal = Double.parseDouble(JOptionPane.showInputDialog("Enter the starting amount"));
         // get the rate per period
         rate = Double.parseDouble(JOptionPane.showInputDialog("Enter rate per period"));
         // get the number of periods
@@ -41,8 +41,14 @@ public class LoanCalc {
     }
 
     private static void calculate() {
-        //TODO To change body of generated methods, choose Tools | Templates.
-        
+        //calculate and display new balance for each period
+        String update;
+        for (periodNumber = 1; periodNumber <= numPeriods; periodNumber++ ){
+            
+            principal = (principal * rate) + principal;
+            update = "The principal after period " + periodNumber + " is " + principal; 
+            System.out.println(update);
+        }
     }
     
 }
